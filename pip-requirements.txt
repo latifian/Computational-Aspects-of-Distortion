@@ -1,0 +1,7 @@
+numpy
+scipy
+gurobipy
+jupyter
+pulp
+tqdm
+matplotlib
