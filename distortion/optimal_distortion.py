@@ -109,7 +109,18 @@ class OptimizedNewOptimalDistortionLP(NewOptimalDistortionLP):
                 self.lp_prob += self.delta_vars[(i, c)] >= self.beta_vars[(i, r)]
 
 
-def find_optimal_distribution(pref, weights):
+def find_optimal_distribution(pref, weights=None):
+    """
+
+    :param pref: The preference profile of n voters over m candidates
+        - Should be a list of n lists
+        - Each inner list should be a permutation of [0, 1, ..., m - 1]
+        where the i-th one denotes the preference ranking of the i-th voter
+    :param weights: voters can have weights
+        - should be a list of n numbers
+        - 'None' is equivalent equal weights
+    :return: the distribution that minimizes the worst-case distortion for the given instance
+    """
     ins = OptimizedNewOptimalDistortionLP(pref, weights)
     ins.setup()
     return ins.solve()
